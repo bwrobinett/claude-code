@@ -9,10 +9,12 @@
     "build": "yarn workspaces foreach run build",
     "test": "yarn workspaces foreach run test",
     "lint": "yarn workspaces foreach run lint",
-    "clean": "yarn workspaces foreach run clean"
+    "clean": "yarn workspaces foreach run clean",
+    "postinstall": "tsx scripts/setup-packages.ts"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
   }
 }
