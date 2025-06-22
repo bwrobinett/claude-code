@@ -37,15 +37,23 @@ function main() {
   }
 
   // Clone each repository if it doesn't exist
+  let packagesCloned = false;
+  
   for (const repo of REPOS) {
     const packagePath = path.join(PACKAGES_DIR, repo.name);
     
     if (!existsSync(packagePath)) {
       log(`Cloning ${repo.name}...`);
       runCommand(`gh repo clone ${repo.url} ${packagePath}`);
+      packagesCloned = true;
     } else {
       log(`${repo.name} already exists, skipping clone`);
     }
+  }
+
+  if (packagesCloned) {
+    log('Running yarn install to set up workspace dependencies...');
+    runCommand('yarn install');
   }
 
   log('✅ Workspace packages setup complete!');
